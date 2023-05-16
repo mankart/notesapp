@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">My Notes App</string>
+    <string name="title">Judul Catatan</string>
+    <string name="body">Isi Catatan</string>
+    <string name="updated_date">Terakhir diperbarui: 15 Mei 2023</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="full_name">Full Name</string>
+    <string name="register">Register</string>
+    <string name="empty_notes">Belum ada catatan!</string>
 </resources>
