@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.github.reskimulud.mynotesapp.databinding.NoteLayoutItemBinding
 import io.github.reskimulud.mynotesapp.model.Note
+import io.github.reskimulud.mynotesapp.utils.Helper.convertDateTimeFormatToCustom
 
 class ListNotesAdapter: RecyclerView.Adapter<ListNotesAdapter.ViewHolder>() {
     private val _notes: MutableList<Note> = mutableListOf()
@@ -24,7 +25,7 @@ class ListNotesAdapter: RecyclerView.Adapter<ListNotesAdapter.ViewHolder>() {
             data.apply {
                 tvTitle.text = title
                 tvBody.text = body
-                tvUpdatedDate.text = updatedAt
+                tvUpdatedDate.text = updatedAt.convertDateTimeFormatToCustom()
             }
         }
     }

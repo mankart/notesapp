@@ -35,4 +35,10 @@ class MainViewModel(private val repository: NotesRepository): ViewModel() {
             _isLoading.postValue(false)
         }
     }
+
+    fun logout() {
+        viewModelScope.launch {
+            repository.clearCache()
+        }
+    }
 }
