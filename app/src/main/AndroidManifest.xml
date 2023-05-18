@@ -14,8 +14,16 @@
         android:theme="@style/Theme.MyNotesApp"
         tools:targetApi="31">
         <activity
-            android:name=".DetailNoteActivity"
+            android:name=".ui.UpdateNoteActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.AddNoteActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MainActivity" />
+        <activity
+            android:name=".ui.DetailNoteActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MainActivity" />
         <activity
             android:name=".ui.SplashScreenActivity"
             android:exported="true">

@@ -22,6 +22,15 @@ class ViewModelFactory(private val repository: NotesRepository): ViewModelProvid
             modelClass.isAssignableFrom(SplashScreenViewModel::class.java) -> {
                 SplashScreenViewModel(repository) as T
             }
+            modelClass.isAssignableFrom(AddNoteViewModel::class.java) -> {
+                AddNoteViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(DetailNoteViewModel::class.java) -> {
+                DetailNoteViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(UpdateNoteViewModel::class.java) -> {
+                UpdateNoteViewModel(repository) as T
+            }
             else -> throw IllegalArgumentException("ViewModel tidak ditemukan")
         }
     }

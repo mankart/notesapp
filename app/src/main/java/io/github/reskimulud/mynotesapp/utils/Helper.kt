@@ -9,7 +9,8 @@ object Helper {
     fun String.convertDateTimeFormatToCustom(): String {
         val startFormatter: DateTimeFormatter =
             DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-        val dateObject: DateTime = startFormatter.parseDateTime(this).withZone(DateTimeZone.forID("Asia/Jakarta"))
+                .withZone(DateTimeZone.forID("Asia/Jakarta"))
+        val dateObject: DateTime = startFormatter.parseDateTime(this)
 
         val resultFormatter: DateTimeFormatter = DateTimeFormat.forPattern("dd MMMM yyyy HH:mm")
 

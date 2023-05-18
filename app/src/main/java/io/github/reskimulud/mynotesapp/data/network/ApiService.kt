@@ -24,8 +24,7 @@ interface ApiService {
     suspend fun postNote(
         @Header("Authorization") token: String,
         @Field("title") title: String,
-        @Field("body") body: String,
-        @Field("tags") tags: List<String> = emptyList()
+        @Field("body") body: String
     ): ResponseWithoutData
 
     @GET("notes")
@@ -45,8 +44,7 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") noteId: String,
         @Field("title") title: String,
-        @Field("body") body: String,
-        @Field("tags") tags: List<String> = emptyList()
+        @Field("body") body: String
     ): ResponseWithoutData
 
     @DELETE("notes/{id}")

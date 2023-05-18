@@ -47,10 +47,10 @@ class NotesRepository(
         }
     }
 
-    suspend fun postNote(title: String, body: String, tags: List<String>): Result<String> {
+    suspend fun postNote(title: String, body: String): Result<String> {
         return try {
             val token = setAuthorization()
-            val response = apiService.postNote(token, title, body, tags)
+            val response = apiService.postNote(token, title, body)
             Result.success(response.message)
         } catch (error: Exception) {
             error.printStackTrace()
@@ -91,10 +91,10 @@ class NotesRepository(
         }
     }
 
-    suspend fun putNoteById(noteId: String, title: String, body: String, tags: List<String>): Result<String> {
+    suspend fun putNoteById(noteId: String, title: String, body: String): Result<String> {
         return try {
             val token = setAuthorization()
-            val response = apiService.putNoteById(token, noteId, title, body, tags)
+            val response = apiService.putNoteById(token, noteId, title, body)
             Result.success(response.message)
         } catch (error: Exception) {
             error.printStackTrace()

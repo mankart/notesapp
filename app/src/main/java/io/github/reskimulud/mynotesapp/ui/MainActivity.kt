@@ -40,16 +40,28 @@ class MainActivity : AppCompatActivity() {
         factory = ViewModelFactory.getInstance(this)
 
         rvNotes = binding.rvNotes
-        listNotesAdapter = ListNotesAdapter()
+        listNotesAdapter = ListNotesAdapter {
+            val moveToDetail = Intent(this, DetailNoteActivity::class.java)
+            moveToDetail.putExtra(DetailNoteActivity.EXTRA_NOTE_ID, it)
+            startActivity(moveToDetail)
+        }
 
         showRecyclerList()
         observables()
+
+        binding.fabCreateNote.setOnClickListener {
+            val intent = Intent(this@MainActivity, AddNoteActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun showRecyclerList() {
         rvNotes.layoutManager = LinearLayoutManager(this)
         rvNotes.adapter = listNotesAdapter
+    }
 
+    override fun onStart() {
+        super.onStart()
         mainViewModel.getNotes()
     }
 

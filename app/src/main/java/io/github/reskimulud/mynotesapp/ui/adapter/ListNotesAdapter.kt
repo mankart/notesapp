@@ -7,11 +7,14 @@ import io.github.reskimulud.mynotesapp.databinding.NoteLayoutItemBinding
 import io.github.reskimulud.mynotesapp.model.Note
 import io.github.reskimulud.mynotesapp.utils.Helper.convertDateTimeFormatToCustom
 
-class ListNotesAdapter: RecyclerView.Adapter<ListNotesAdapter.ViewHolder>() {
+class ListNotesAdapter(
+    private val onClickCallback: (noteId: String) -> Unit,
+): RecyclerView.Adapter<ListNotesAdapter.ViewHolder>() {
     private val _notes: MutableList<Note> = mutableListOf()
     private val notes: List<Note> = _notes
 
     fun setData(data: List<Note>) {
+        _notes.clear()
         _notes.addAll(data)
         notifyDataSetChanged()
     }
@@ -43,5 +46,8 @@ class ListNotesAdapter: RecyclerView.Adapter<ListNotesAdapter.ViewHolder>() {
         val data = notes[position]
 
         holder.bind(data)
+        holder.itemView.setOnClickListener {
+            onClickCallback(data.id)
+        }
     }
 }
