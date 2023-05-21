@@ -58,4 +58,7 @@ dependencies {
 
     // local datastore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    // joda-time
+    implementation 'joda-time:joda-time:2.10.12'
 }

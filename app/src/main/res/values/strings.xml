@@ -9,4 +9,9 @@
     <string name="full_name">Full Name</string>
     <string name="register">Register</string>
     <string name="empty_notes">Belum ada catatan!</string>
+    <string name="logout">Logout</string>
+    <string name="save">Simpan</string>
+    <string name="update_note">Ubah Catatan</string>
+    <string name="delete_note">Hapus Catatan</string>
+    <string name="cancel">Cancel Update</string>
 </resources>
