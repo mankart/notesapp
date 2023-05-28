@@ -9,12 +9,16 @@ object ApiConfig {
     private fun getClient(): OkHttpClient {
         // TODO: Membuat client
         return OkHttpClient.Builder()
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
     }
 
     fun getApiService(): ApiService {
-        /// TODO: Membuat ApiService dengan Retrofit
+        // TODO: Membuat ApiService dengan Retrofit
         val retrofit = Retrofit.Builder()
+            .baseUrl("https://notes.reskimulud.my.id/")
+            .client(getClient())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
         return retrofit.create(ApiService::class.java)
     }

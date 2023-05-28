@@ -9,4 +9,31 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(private val repository: NotesRepository): ViewModel() {
     // TODO : ViewModel untuk activity Login
+    private val _token = MutableLiveData<String>()
+    val token: LiveData<String> = _token
+
+    private val _message = MutableLiveData<String>()
+    val message: LiveData<String> = _message
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    fun login(username: String, password: String) {
+        viewModelScope.launch {
+            _isLoading.postValue(true)
+            val response = repository.postLogin(username, password)
+            when {
+                response.isSuccess -> {
+                    // ketika response register sukses
+                    _token.postValue(response.getOrNull())
+                    _message.postValue("Login Berhasil")
+                }
+                response.isFailure -> {
+                    // ketika response register gagal
+                    _message.postValue("Login Gagal!")
+                }
+            }
+            _isLoading.postValue(false)
+        }
+    }
 }
