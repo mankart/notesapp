@@ -24,14 +24,21 @@ class LoginActivity : AppCompatActivity() {
 
         factory = ViewModelFactory.getInstance()
 
-        val username = binding.etUsername.text
-        val password = binding.etPassword.text
         val btnLogin = binding.btnLogin
 
         observables()
 
         btnLogin.setOnClickListener {
             // TODO : Ketika tombol login ditekan
+            val username = binding.etUsername.text
+            val password = binding.etPassword.text
+
+            if (!username.isNullOrEmpty() && !password.isNullOrEmpty()) {
+                loginViewModel.login(
+                    username.toString().trim(),
+                    password.toString().trim()
+                )
+            }
         }
 
         binding.tvToRegister.setOnClickListener {
@@ -44,6 +51,17 @@ class LoginActivity : AppCompatActivity() {
     private fun observables() {
         loginViewModel.apply {
             // TODO : method untuk observasi live data dari viewModel
+            token.observe(this@LoginActivity) {
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            isLoading.observe(this@LoginActivity) {
+                showLoadingIndicator(it)
+            }
+            message.observe(this@LoginActivity) {
+                Toast.makeText(this@LoginActivity, it, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
